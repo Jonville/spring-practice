@@ -23,7 +23,7 @@ public class MvcApiController1 {
 
     @PutMapping("/put-test1")
     public String putTest1() {
-        return "put 은 업데이트 http 메소드 입니다.";
+        return "put 은 업데이트 http 메소드 입니다...";
     }
 
     @DeleteMapping("/delete-test1")
