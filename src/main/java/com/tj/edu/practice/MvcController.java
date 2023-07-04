@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MvcController {
-    @GetMapping(value ="/test")
+    @GetMapping(value ="/test2")
     public String test2() {
         return "test2";
     }
