@@ -33,8 +33,6 @@ dependencies {
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
 
 
-}
-
 tasks.named('test') {
 	useJUnitPlatform()
 }
