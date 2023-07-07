@@ -1,4 +1,4 @@
-package com.tj.edu.pratice3.spring_exception.dto;
+package com.tj.edu.practice3.spring_exception.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

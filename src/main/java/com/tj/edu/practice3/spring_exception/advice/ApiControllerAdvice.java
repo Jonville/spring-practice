@@ -1,6 +1,5 @@
-package com.tj.edu.pratice3.spring_exception.advice;
+package com.tj.edu.practice3.spring_exception.advice;
 
-import jakarta.validation.constraints.Null;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;

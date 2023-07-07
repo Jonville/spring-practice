@@ -1,4 +1,4 @@
-package com.tj.edu.pratice3.objectmapper.dto;
+package com.tj.edu.practice3.objectmapper.dto;
 
 public class Car {
     private String name;

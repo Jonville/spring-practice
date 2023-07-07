@@ -1,6 +1,6 @@
-package com.tj.edu.pratice3.spring_exception.controller;
+package com.tj.edu.practice3.spring_exception.controller;
 
-import com.tj.edu.pratice3.spring_exception.dto.User;
+import com.tj.edu.practice3.spring_exception.dto.User;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
 import org.springframework.http.ResponseEntity;

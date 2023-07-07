@@ -1,4 +1,4 @@
-package com.tj.edu.pratice3.spring_exception;
+package com.tj.edu.practice3.spring_exception;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
