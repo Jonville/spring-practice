@@ -13,16 +13,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Member {
+public class Member2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @NonNull
+    @NonNull
     private String name;
     private String email;
-//    @NonNull
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
 
 }

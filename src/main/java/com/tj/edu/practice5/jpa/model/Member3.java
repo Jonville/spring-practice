@@ -6,23 +6,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Member {
+public class Member3 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @NonNull
+    @NonNull
     private String name;
     private String email;
-//    @NonNull
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+    private int age;
+    private boolean isflg;
+    private String url;
+    private String nickname;
 
 }

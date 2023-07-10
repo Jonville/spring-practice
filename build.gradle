@@ -36,10 +36,20 @@ dependencies {
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	// H2database에 연결
 	runtimeOnly 'com.h2database:h2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+	// MariaDB 에 연결
+	implementation group: 'org.mariadb.jdbc', name : 'mariadb-java-client'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+	// MySQL 에 연결
+//	implementation group: 'mysql' , name: 'mysql-connector-j'
+	implementation 'com.mysql:mysql-connector-j'
+
 }
+
 
 tasks.named('test') {
 	useJUnitPlatform()
