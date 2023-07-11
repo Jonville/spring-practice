@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.lang.annotation.Annotation;
 
 @Component
+
 public class AuthInterceptor implements HandlerInterceptor {
 
     @Override   // 암호화 할때 주로 사용
