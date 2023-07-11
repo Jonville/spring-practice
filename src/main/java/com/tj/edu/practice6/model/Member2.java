@@ -1,15 +1,14 @@
-package com.tj.edu.practice5.jpa.model;
+package com.tj.edu.practice6.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "member")
 public class Member2 {
 
     @Id

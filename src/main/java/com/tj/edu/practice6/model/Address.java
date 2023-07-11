@@ -1,19 +1,24 @@
-package com.tj.edu.practice5.lombok.model;
+package com.tj.edu.practice6.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
-public class Member {
+public class Address {
+
     @Id
     private Long id;
-    private Integer age;
+    private String zipcode;
+
+
+
 }
