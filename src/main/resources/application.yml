@@ -55,3 +55,17 @@ spring:
   devtools:
     livereload:
       enabled: true
+
+logging:
+  level:
+    org:
+
+#      hibernate: trace
+      hibernate:
+        orm:
+          jdbc:
+            bind: trace
+        SQL: debug
+#        SQL : debug
+#        type : trace
+#    root: trace

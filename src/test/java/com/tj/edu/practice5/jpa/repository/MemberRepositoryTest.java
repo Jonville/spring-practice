@@ -138,22 +138,22 @@ class MemberRepositoryTest {
 
     }
 
-    @DisplayName("semmiProject sqlmapper 관련 xml sql 코드를 jpa 자바코드로 변환 테스트")
-    @Test
-    void crudSemiSqlMapper() {
-
-        AdminUser adminUser = AdminUser.builder()
-                .name("홍길동")
-                .nick("Honghong")
-                .email("hong@gmail.com")
-                .phone("010-1234-5678")
-                .build();
-
-        adminUserRepository.save(adminUser);
-
-        System.out.println(adminUser);
-
-    }
+//    @DisplayName("semmiProject sqlmapper 관련 xml sql 코드를 jpa 자바코드로 변환 테스트")
+//    @Test
+//    void crudSemiSqlMapper() {
+//
+//        AdminUser adminUser1 = AdminUser.builder()
+//                .name("홍길동")
+//                .nick("Honghong")
+//                .email("hong@gmail.com")
+//                .phone("010-1234-5678")
+//                .build();
+//
+//        adminUserRepository.save(adminUser1);
+//
+//        System.out.println(adminUser1);
+//
+//    }
     
     
 }
