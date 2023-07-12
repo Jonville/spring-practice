@@ -1,6 +1,9 @@
 package com.tj.edu.practice6;
 
+import com.tj.edu.practice6.model.Board;
 import com.tj.edu.practice6.model.Member;
+import com.tj.edu.practice6.model.enums.Nation;
+import com.tj.edu.practice6.repository.BoardRepository;
 import com.tj.edu.practice6.repository.MemberRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -20,6 +23,9 @@ class JpaQueryMethodTest {
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private BoardRepository boardRepository;
 
     @Test
     void jpaQueryMethodTest1() {
@@ -118,6 +124,51 @@ class JpaQueryMethodTest {
         List<Member> memberList17 = pageMember.getContent();
         memberList17.forEach(System.out::println);
 
+    }
+
+    @Test
+    void jpaSchemaTest() throws InterruptedException {
+        Member member = Member.builder()
+                .name("이미라")
+                .email("imila@naver.com")
+                .createAt(LocalDateTime.now())
+                .updateAt(LocalDateTime.now())
+                .build();
+
+        member = memberRepository.saveAndFlush(member); // insert
+
+        Thread.sleep(1000);
+
+        member.setName("gjgjgj");
+        member.setUpdateAt(LocalDateTime.now());
+        memberRepository.saveAndFlush(member);           // update
+
+        member.setTest2(56789);
+        memberRepository.saveAndFlush(member);           // update
+
+    }
+
+    @Test
+    void boardColumnTest() {
+        Board board1 = Board.builder()
+                .boardNo("1")
+                .title("ㅇㅇㅇ")
+                .build();
+
+        boardRepository.save(board1);
+    }
+
+    @Test
+    void jpaEnumTest() {
+        Member member = Member.builder()
+                .name("이미라")
+                .email("imira@naver.com")
+                .createAt(LocalDateTime.now())
+                .updateAt(LocalDateTime.now())
+                .nation(Nation.CHINA)
+                .build();
+
+        memberRepository.save(member);
     }
 
 }

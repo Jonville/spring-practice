@@ -2,21 +2,25 @@ package com.tj.edu.practice6.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-public class Address {
+public class Member_TestEntity {
 
     @Id
-    private Long id;
-    private String zipcode;
+    private Long uid;
+    private String uname;
+    private String upassword;
+    private LocalDateTime cdate;
+    private LocalDateTime udate;
 
 }
