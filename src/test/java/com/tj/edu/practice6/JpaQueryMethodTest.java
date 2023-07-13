@@ -1,9 +1,13 @@
 package com.tj.edu.practice6;
 
+import com.tj.edu.practice6.model.Address;
 import com.tj.edu.practice6.model.Board;
+import com.tj.edu.practice6.model.Book;
 import com.tj.edu.practice6.model.Member;
 import com.tj.edu.practice6.model.enums.Nation;
+import com.tj.edu.practice6.repository.AddressRepository;
 import com.tj.edu.practice6.repository.BoardRepository;
+import com.tj.edu.practice6.repository.BookRepository;
 import com.tj.edu.practice6.repository.MemberRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -26,6 +30,12 @@ class JpaQueryMethodTest {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
 
     @Test
     void jpaQueryMethodTest1() {
@@ -169,6 +179,50 @@ class JpaQueryMethodTest {
                 .build();
 
         memberRepository.save(member);
+    }
+
+    @Test
+    void jpaEventListener() {
+        Member member = Member.builder()
+                .name("홍숭대")
+                .email("hongsungdae@naver.com")
+                .createAt(LocalDateTime.now())
+                .updateAt(LocalDateTime.now())
+                .build();
+
+        memberRepository.save(member);      // insert (PrePersist , PostPersist)
+
+        Member member2 = memberRepository.findById(1L).orElseThrow(RuntimeException::new);  // select (PostLoad)
+        member2.setName("박근혜");
+
+        memberRepository.save(member2);     // update (PreUpdate , PreRemove)
+
+        memberRepository.deleteById(3L);    // delete (PreRemove , PostRemove)
+    }
+
+    @Test
+    void bookRepositoryTest() throws InterruptedException {
+        Book book = Book.builder()
+                .name("표준orm JPA 프로그래밍")
+                .author("김한선")
+                .build();
+
+        Book book2 = bookRepository.save(book);
+
+        Thread.sleep(1000);
+
+        book2.setAuthor("박봉남");
+        bookRepository.save(book2);
+    }
+
+    @Test
+    void addressRepositoryTest() throws InterruptedException {
+        Address address = Address.builder()
+                .zipcode("아파트 1530 동 1569 호")
+                .build();
+
+        Address address2 = addressRepository.save(address);
+
     }
 
 }

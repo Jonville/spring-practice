@@ -13,7 +13,8 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "member" , uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
-public class Member {
+@EntityListeners(value =  { MyEntityListener.class , MemberEntityListener.class } )
+public class Member implements Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,4 +43,26 @@ public class Member {
     @Column(columnDefinition = "ENUM")      // 이렇게 해주면 좀더 안전함
     @Enumerated(value = EnumType.STRING)
     private Nation nation;
+
+    @PreRemove
+    public void preRemove1() {
+        System.out.println(">>> preRemove1");
+    }
+    @PostPersist
+    public void afterInsert1() {
+        System.out.println(">>> afterInsert1");
+    }
+    @PostLoad
+    public void afterLoad1() {
+        System.out.println(">>> afterLoad1");
+    }
+    @PostUpdate
+    public void afterUpdate1() {
+        System.out.println(">>> afterUpdate1");
+    }
+    @PostRemove
+    public void afterRemove1() {
+        System.out.println(">>> afterRemove1");
+    }
+
 }
