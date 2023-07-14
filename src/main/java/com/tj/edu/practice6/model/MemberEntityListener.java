@@ -4,14 +4,20 @@ import com.tj.edu.practice6.repository.MemberLogHistoryRepository;
 import com.tj.edu.practice6.util.SpringBeanUtils;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PostUpdate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class MemberEntityListener{
+@Component
+public class MemberEntityListener {
 
-    @PostUpdate
+//    @Autowired        // 이렇게 사용할수가 없음
+//    MemberLogHistoryRepository memberLogHistoryRepository;
+
     @PostPersist
-    public void postPersistAndPostUpdate(Object o) {    // 한꺼번에 가능
+    @PostUpdate
+    public void afterMemberSave(Object o)  {
+        // memberLogHistoryRepository 을 가져올땐 이렇게 해준다
         MemberLogHistoryRepository memberLogHistoryRepository = SpringBeanUtils.getBean(MemberLogHistoryRepository.class);
-
         Member member = (Member) o;
 
         MemberLogHistory memberLogHistory = MemberLogHistory.builder()
@@ -22,5 +28,4 @@ public class MemberEntityListener{
 
         memberLogHistoryRepository.save(memberLogHistory);
     }
-   
 }

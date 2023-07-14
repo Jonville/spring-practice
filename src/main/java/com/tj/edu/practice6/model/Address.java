@@ -1,28 +1,22 @@
 package com.tj.edu.practice6.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.context.event.EventListener;
-
-import java.time.LocalDateTime;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@EntityListeners(value = MyEntityListener.class)
-public class Address implements Auditable {
+@EqualsAndHashCode(callSuper=true)
+public class Address extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String zipcode;
 
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+    @OneToOne(optional = false)
+    private Member member;
 
 }
