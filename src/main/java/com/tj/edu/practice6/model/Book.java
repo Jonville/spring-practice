@@ -3,6 +3,8 @@ package com.tj.edu.practice6.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,9 +17,23 @@ public class Book extends BaseEntity {
     private Long id;
 
     @OneToOne(mappedBy = "book")
+    @ToString.Exclude
     private BookReviewInfo bookReviewInfo;
 
     private String name;
-    private String author;
+
+    @ManyToOne
+    @ToString.Exclude
+    private Publisher publisher;
+
+    @OneToMany
+    @JoinColumn(name = "book_id")
+    @ToString.Exclude
+    private List<Review> reviews;
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<Author> authors;
+
 
 }

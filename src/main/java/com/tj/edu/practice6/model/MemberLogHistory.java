@@ -20,9 +20,10 @@ public class MemberLogHistory extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long memberId;
-
     private String name;
     private String email;
+
+    @ManyToOne
+    private Member member;
 
 }

@@ -23,9 +23,6 @@ class JpaQueryMethodTest {
     private MemberRepository memberRepository;
 
     @Autowired
-    private BoardRepository boardRepository;
-
-    @Autowired
     private BookRepository bookRepository;
 
     @Autowired
@@ -156,16 +153,6 @@ class JpaQueryMethodTest {
     }
 
     @Test
-    void boardColumnTest() {
-        Board board1 = Board.builder()
-                .boardNo("1")
-                .title("ㅇㅇㅇ")
-                .build();
-
-        boardRepository.save(board1);
-    }
-
-    @Test
     void jpaEnumTest() {
         Member member = Member.builder()
                 .name("이미라")
@@ -206,14 +193,14 @@ class JpaQueryMethodTest {
     void bookRepositoryTest() throws InterruptedException {
         Book book = Book.builder()
                 .name("표준orm JPA 프로그래밍")
-                .author("김한선")
+//                .author("김한선")
                 .build();
 
         Book book2 = bookRepository.save(book);
 
         Thread.sleep(1000);
 
-        book2.setAuthor("박봉남");
+//        book2.setAuthor("박봉남");
         bookRepository.save(book2);
     }
 
@@ -238,10 +225,25 @@ class JpaQueryMethodTest {
         member.setName("박근혜");
         memberRepository.save(member);
 
+        member.setName("박근혜2");
+        memberRepository.save(member);
+
 //        List<MemberLogHistory> memberLogHistories = memberLogHistoryRepository.findByMemberId(member.getId());
 //        Optional<Member> optMember2 = memberRepository.findById(memberLogHistories.get(0).getMemberId());
 
-        memberRepository.findAll();
+//        List<MemberLogHistory> memberLogHistoryList =  memberRepository.findByEmail("hongsungdae@naver.com").getMemberLogHistories();
+//        memberLogHistoryList.forEach(System.out::println);
+//
+//        List<MemberLogHistory> memberLogHistoryList2 =  memberRepository.findById(8L).get().getMemberLogHistories();
+//        memberLogHistoryList2.forEach(System.out::println);
+
+
+//        List<Member> memberList = memberRepository.findAll();
+//        Member member2 = memberList.get(0);
+//        List<MemberLogHistory> memberLogHistories = member2.getMemberLogHistories();
+//        System.out.println(">>>>>>>>>>>>> memberLogHistories : " + memberLogHistories);
+
+
     }
 
 }

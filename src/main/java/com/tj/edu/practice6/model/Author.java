@@ -3,21 +3,27 @@ package com.tj.edu.practice6.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name = "member")
-public class Member2 {
+@EqualsAndHashCode(callSuper = true)
+@Table(name = "author")
+public class Author extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
+
+    @Column(nullable = false)
     private String name;
-    private String email;
-    private String email2;
-    private String email3;
+
+    @ManyToMany
+    @ToString.Exclude
+    private List<Book> books;
 
 }
+

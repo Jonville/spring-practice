@@ -26,15 +26,20 @@ public class Member extends BaseEntity{
     private String name;
     private String email;
 
-    @Column(name = "colTest2" , unique = true , updatable = false)
+    @Column(name = "colTest2", updatable = false)
     private Integer test2;
 
 //    @OneToMany(fetch = FetchType.EAGER) // Address class 에 있는걸 JOIN 하는거
 //    private List<Address> address;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "member_id" , insertable = false , updatable = false)    // false 한건 read only 로 한거임
+    @ToString.Exclude
     private List<MemberLogHistory> memberLogHistories;
 
+    @OneToMany
+    @JoinColumn(name = "member_id")
+    private List<Review> reviews;
 
     @Transient  // 잠깐 Column 자체를 DB 에서 제외 시켜준다. ( JAVA 에서만 실행시키고 싶을때 사용 )
     private String testData;
@@ -63,6 +68,5 @@ public class Member extends BaseEntity{
     public void afterRemove1() {
         System.out.println(">>> afterRemove1");
     }
-
 
 }
