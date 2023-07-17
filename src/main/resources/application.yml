@@ -56,15 +56,16 @@ spring:
     livereload:
       enabled: true
 
-#logging:
-#  level:
-#    org:
+logging:
+  level:
+    org:
+#      springframework: debug
 #
-##      hibernate: trace
-#      hibernate:
-#        orm:
-#          jdbc:
-#            bind: trace
+#      hibernate: trace
+      hibernate:
+        orm:
+          jdbc:
+            bind: trace
 #        SQL: debug
 ##        SQL : debug
 ##        type : trace

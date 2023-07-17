@@ -1,13 +1,13 @@
 package com.tj.edu.practice6.repository;
 
-import com.tj.edu.practice6.model.Book;
-import com.tj.edu.practice6.model.Member;
-import com.tj.edu.practice6.model.Publisher;
-import com.tj.edu.practice6.model.Review;
+import com.tj.edu.practice6.model.*;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -76,5 +76,71 @@ public class BookRepositoryTest {
     private Member givenMember() {
         return memberRepository.findByEmail("amsun@thejoeun.com");
     }
+
+
+    @Test
+    void jpqlTest1() {
+        // 성공
+        List<Book> bookList = bookRepository.findByMyBooks("재미있는 자바책");
+        bookList.forEach(System.out::println);
+
+        System.out.println("findByMyBooks--------------------------------------------------------------------1");
+
+        // 성공
+        List<Book> bookList2 = bookRepository.findByMyBooksAndMyId(2L, "재미있는 자바책");
+        bookList2.forEach(System.out::println);
+
+        System.out.println("findByMyBooksAndMyId--------------------------------------------------------------------2");
+
+        // 성공
+        List<String> bookList3 = bookRepository.findNameByMyBooks("재미있는 자바책");
+        bookList3.forEach(System.out::println);
+
+        System.out.println("findNameByMyBooks--------------------------------------------------------------------3");
+
+        // 에러
+//        List<Book> bookList4 = bookRepository.findNameIdByMyBooks("재미있는 자바책");
+//        bookList4.forEach(System.out::println);
+
+        // 성공
+        List<Map<String, Object>> listMap1 = bookRepository.findNameIdByMyBooks("재미있는 자바책");
+        listMap1.forEach(x -> System.out.println(x.entrySet()));
+//        listMap1.forEach(x -> System.out.println(x.values()));
+
+        System.out.println("findNameIdByMyBooks--------------------------------------------------------------------4");
+
+        List<Map<String, Object>> listMap2 = bookRepository.findByNamedNameIdByMyBooks("재미있는 자바책");
+        listMap2.forEach(x -> System.out.println(x.entrySet()));
+
+        System.out.println("findByNamedNameIdByMyBooks--------------------------------------------------------------------5");
+
+        List<Book> bookListByNamed = bookRepository.findByNamedByMyBooksAndMyId( 1L, "재미있는 자바책");
+        bookListByNamed.forEach(System.out::println);
+
+        System.out.println("findByNamedByMyBooksAndMyId--------------------------------------------------------------------5");
+
+
+    }
+
+    @Test
+    void nativeSqlTest() {
+        List<Book> bookListByNative = bookRepository.findByNativeMyBooks("재미있는 자바책");
+        bookListByNative.forEach(System.out::println);
+
+        System.out.println("findByNativeMyBooks--------------------------------------------------");
+
+        List<Book> bookListByNativeName = bookRepository.findByNativeNameMyBooks("재미있는 자바책");
+        bookListByNative.forEach(System.out::println);
+
+        System.out.println("findByNativeNameMyBooks--------------------------------------------------");
+
+    }
+
+    @Test
+    void customModelJpaTest1() {
+        List<BookAndId> bookAndIdList = bookRepository.findByCustomNamedNameIdByMyBooks("재미있는 자바책");
+        bookAndIdList.forEach(s -> System.out.println(s.getAbc() + " : " + s.getName2()));
+    }
+
 
 }

@@ -26,6 +26,6 @@ public class Publisher extends BaseEntity {
     @ToString.Exclude
     private List<Book> books;
 
-    @ManyToOne
-    private List<Author> authors;
+//    @ManyToOne
+//    private List<Author> authors;
 }
