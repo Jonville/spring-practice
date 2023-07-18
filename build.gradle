@@ -50,6 +50,8 @@ dependencies {
 	// datasource 이쁘게 나오게해줌 (P6Spy)
 //	implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
 
+	// Thymeleaf 추가하기
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 }
 
