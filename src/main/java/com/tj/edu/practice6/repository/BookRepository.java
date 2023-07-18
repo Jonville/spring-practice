@@ -2,7 +2,9 @@ package com.tj.edu.practice6.repository;
 
 import com.tj.edu.practice6.model.Book;
 import com.tj.edu.practice6.model.BookAndId;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -38,13 +40,35 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<BookAndId> findByCustomNamedNameIdByMyBooks(@Param("name") String name);
 
     // native query
-
     @Query(value = "select * from book where name = ?1" , nativeQuery = true)
     List<Book> findByNativeMyBooks(String name);
 
     @Query(value = "select * from book where name = :name1" , nativeQuery = true)
     List<Book> findByNativeNameMyBooks(@Param("name1") String name);
 
+    @Query(value = "update book set name = '이상한자바책' where id = :id", nativeQuery = true)
+    @Modifying
+    int updateSpecificName(@Param("id") Long id);
+
+    @Query(value = """
+            update
+                Book b
+            set
+                b.name = '이상한자바책'
+            where
+                b.id = :id
+            """
+            , nativeQuery = true)
+    @Modifying
+    int updateSpecificNameByJPQL(@Param("id") Long id);
+
+    @Query(value = "delete from book where id = :id", nativeQuery = true)
+    @Modifying
+    int deleteSpecificName(@Param("id") Long id);
+
+    @Query(value = "insert into book (id, name, publisher_id) values (:id, :name, :publisher_id)", nativeQuery = true)
+    @Modifying
+    int insertSpecificName(@Param("id") Long id, @Param("name") String name, @Param("publisher_id") Long publisher_id);
 //    @Query(value = """
 //                select 쿼리문 .....
 //                ....

@@ -142,5 +142,20 @@ public class BookRepositoryTest {
         bookAndIdList.forEach(s -> System.out.println(s.getAbc() + " : " + s.getName2()));
     }
 
+    @Test
+    @Transactional
+    void updateJpaTest1() {
+
+//        int idUpdate = bookRepository.updateSpecificName(2L);
+//        int idUpdate = bookRepository.updateSpecificNameByJPQL(2L);
+        int isDelete = bookRepository.deleteSpecificName(2L);
+        int isInsert = bookRepository.insertSpecificName(5L , "이상해이" , 2L);
+
+//        System.out.println("2번 id를 가진 book의 이름 : " + ( idUpdate > 0 ? "바뀜" :  "바뀌지 않음"));
+        System.out.println("2번 id를 가진 book의 이름 : " + isDelete);
+        System.out.println("추가되었나? : " + isInsert);
+
+        bookRepository.findAll().forEach(System.out::println);
+    }
 
 }
