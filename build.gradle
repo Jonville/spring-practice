@@ -53,6 +53,11 @@ dependencies {
 	// Thymeleaf 추가하기
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
+	// Spring Security 추가
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	testImplementation 'org.springframework.security:spring-security-test'
+
 }
 
 
