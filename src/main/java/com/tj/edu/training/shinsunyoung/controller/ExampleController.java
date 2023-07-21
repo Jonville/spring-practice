@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 import java.util.List;
 
+
 @Controller
 public class ExampleController {
-
     @GetMapping("/thymeleaf/example")
     public String thymeleafExample(Model model) {
         Person examplePerson = new Person();

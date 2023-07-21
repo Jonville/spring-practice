@@ -32,6 +32,7 @@ dependencies {
 
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.24.2'
 
+	// Lombok 설치
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.28'
 	annotationProcessor 'org.projectlombok:lombok'
 
@@ -58,6 +59,16 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	testImplementation 'org.springframework.security:spring-security-test'
 
+	// JWT 추가
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+	// test 코드에서 Lombok 사용
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.projectlombok:lombok'
+
+	// google 인증 추가
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 
 

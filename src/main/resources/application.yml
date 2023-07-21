@@ -5,11 +5,25 @@ application :
   version: 1.0.0
   title : thejoeun company
 
+# JWT 생성
+jwt:
+  issuer: jwt1@abc.com
+  secret_key: 1234
+
 spring:
   security:
     user:
       name: user
       password: 1234
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 1050483374297-fo1gpuaunqgbo3qt1bi9jsg8t180h3ut.apps.googleusercontent.com
+            client:-secret: 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
+            scope:
+              - email
+              - profile
   thymeleaf:
     cache: false
   datasource:

@@ -1,9 +1,7 @@
 package com.tj.edu.training.shinsunyoung.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,27 +9,36 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@NoArgsConstructor
-@Entity
 @Getter
-@Table(name = "users")  // 'user' 하면 예약어 때문에 부딪힘
-public class User implements UserDetails {  // security 로 구현 할것이기 떄문에 UserDetails 를 붙힘
+@Setter
+@NoArgsConstructor
+//@AllArgsConstructor
+@Entity
+@Table(name = "users")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @Column(updatable = false)
     private Long id;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", nullable = false)
     private String password;
+
+    private String accessToken;
 
     @Builder
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+    @Builder
+    public User(String email, String password, String accessToken) {
+        this.email = email;
+        this.password = password;
+        this.accessToken = accessToken;
     }
 
     @Override
@@ -40,13 +47,13 @@ public class User implements UserDetails {  // security 로 구현 할것이기 
     }
 
     @Override
-    public String getUsername() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
     @Override
-    public String getPassword() {
-        return password;
+    public String getUsername() {
+        return email;
     }
 
     @Override
